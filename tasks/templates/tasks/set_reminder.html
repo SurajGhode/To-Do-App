@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Reminder</title>
+</head>
+<body>
+    <h1>Set Reminder for "{{ task.title }}"</h1>
+
+    <!-- Form for setting reminders -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Set Reminder</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            // Initialize date picker for fields with the "datepicker" class
+            $(".datepicker").datepicker();
+        });
+    </script>
+
+    
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    <!-- Form for adding tasks -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Task</button>
+    </form>
+
+    <!-- List of current tasks -->
+    <!-- List of current tasks -->
+<!-- List of current tasks -->
+<h2>Current Tasks</h2>
+<ul>
+    {% for task in tasks %}
+        <li>
+            {{ task.title }}
+            {% if task.reminder %}
+                (Reminder: {{ task.reminder|date:"d-m-Y" }})
+            {% endif %}
+            <a href="{% url 'delete_task' task.id %}">Delete</a>
+            <a href="{% url 'complete_task' task.id %}">Mark as Completed</a>
+            <a href="{% url 'set_reminder' task.id %}">Set Reminder</a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+    <!-- List of completed tasks -->
+    <h2>Completed Tasks</h2>
+    <ul>
+        {% for task in completed_tasks %}
+            <li>
+                {{ task.title }}
+                (Completed at: {{ task.completed_at }})
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Task</button>
+    </form>
+    
+</body>
+</html>
