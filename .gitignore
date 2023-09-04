@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+__pycache__/
+
+# Database
+db.sqlite3
+
+# Static files (if using Django's default settings)
+/static/
+/media/
+
+# Secret key
+secret_key.txt
+
+# Local settings
+local_settings.py
